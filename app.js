@@ -10,3 +10,33 @@ ps = [
   "half Venus contrast wound ignore experience sight tactic host behave brainstorm butterfly catch virtue camp compact weed manual teacher forward nightmare soap detector remember length laser dose work discount cook man jump",
   "sensitive peanut boot distribute product rib farewell regulation lock agreement shaft graduate copper expose bread organ lift carry bargain trainer beach basic sofa rhetoric cemetery jealous crosswalk favourite context debut coffin criminal",
 ];
+
+const input = document.getElementById("lorem");
+const form = document.querySelector(".lorem");
+const article = document.querySelector(".lorems");
+const len = ps.length;
+const loi = `Number is from 1 to ${len}`;
+
+function generateNParagraphs(n) {
+  let l = ps.slice(0, n);
+  return l.map((p) => `<p>${p}</p>`).join("");
+}
+
+function processInput() {
+  let num = Number(input.value);
+  if (num < 1 || num > 10) {
+    showError();
+    return 1;
+  } else {
+    return num;
+  }
+}
+
+function showParagraphs(e) {
+  e.preventDefault();
+  const n = processInput();
+  paras = generateNParagraphs(n);
+  article.innerHTML = paras;
+}
+
+form.addEventListener("submit", showParagraphs);
