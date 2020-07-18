@@ -16,16 +16,30 @@ const form = document.querySelector(".lorem");
 const article = document.querySelector(".lorems");
 const len = ps.length;
 const loi = `Number is from 1 to ${len}`;
+const errorDiv = document.querySelector(".error");
+errorDiv.innerHTML = loi;
+let num = 0;
+setInterval(() => {
+  num = Number(input.value);
+}, 200);
 
 function generateNParagraphs(n) {
   let l = ps.slice(0, n);
   return l.map((p) => `<p>${p}</p>`).join("");
 }
 
+function showError() {
+  if (num < 1 || num > len) {
+    errorDiv.classList.remove("hide");
+  } else {
+    errorDiv.classList.add("hide");
+  }
+}
+
+setInterval(showError, 200);
+
 function processInput() {
-  let num = Number(input.value);
-  if (num < 1 || num > 10) {
-    showError();
+  if (num < 1 || num > len) {
     return 1;
   } else {
     return num;
